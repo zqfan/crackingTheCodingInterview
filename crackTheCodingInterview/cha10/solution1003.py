@@ -76,6 +76,7 @@ def is_intersect(line1, line2):
     if ((line1[0] == 0 and line1[1] == 0) or
         (line2[0] == 0 and line2[1] == 0)):
         return False
+    # check if both are vertical lines
     if line1[1] == 0 and line2[1] == 0:
         return line1[2] * line2[0] == line2[2] * line1[0]
     if line1[0] * line2[1] == line2[0] * line1[1]:
