@@ -2,16 +2,11 @@
 # -*- coding: utf-8 -*-
 # vim: tabstop=4 shiftwidth=4 softtabstop=4
 
-import os
-import sys
 import unittest
 import random
 
-
-TEST_FILE_DIR = os.path.dirname(os.path.abspath(__file__))
-TEST_ROOT_DIR = os.path.dirname(TEST_FILE_DIR)
-SOURCE_ROOT_DIR = os.path.dirname(TEST_ROOT_DIR)
-sys.path.append(SOURCE_ROOT_DIR)
+import utils
+utils.patch_sys_path()
 import cha10.solution1004 as s
 
 
