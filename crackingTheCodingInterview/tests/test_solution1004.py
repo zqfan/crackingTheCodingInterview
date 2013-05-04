@@ -7,61 +7,61 @@ import random
 
 import utils
 utils.patch_sys_path()
-import cha10.solution1004 as s
+from solution1004 import *
 
 
 class CTCI1004Test(unittest.TestCase):
     def test_non_integer(self):
         operator, lhs, rhs = '*', '1', 0.3
-        self.assertRaises(s.NotIntegerError,
-                         s.arithmetic,
+        self.assertRaises(NotIntegerError,
+                         arithmetic,
                          *(operator, lhs, rhs))
 
     def test_invalid_operator(self):
         operator, lhs, rhs = '%', 1, 2
-        self.assertRaises(s.InvalidOperatorError,
-                          s.arithmetic,
+        self.assertRaises(InvalidOperatorError,
+                          arithmetic,
                           *(operator, lhs, rhs))
 
     def test_multiply_zero(self):
-        self.assertEqual(0, s.arithmetic('*', 0, 0))
-        for i in range(1024):
+        self.assertEqual(0, arithmetic('*', 0, 0))
+        for i in range(128):
             lhs, rhs = 0, random.randint(-1024, 1024)
-            self.assertEqual(0, s.arithmetic('*', lhs, rhs))
+            self.assertEqual(0, arithmetic('*', lhs, rhs))
             lhs, rhs = random.randint(-1024, 1024), 0
-            self.assertEqual(0, s.arithmetic('*', lhs, rhs))
+            self.assertEqual(0, arithmetic('*', lhs, rhs))
 
     def test_multiply_operation(self):
-        for i in range(1024):
+        for i in range(128):
             lhs = random.randint(-1024, 1024)
             rhs = random.randint(-1024, 1024)
-            self.assertEqual(lhs * rhs, s.arithmetic('*', lhs, rhs))
+            self.assertEqual(lhs * rhs, arithmetic('*', lhs, rhs))
 
     def test_minus_operation(self):
-        for i in range(1024):
+        for i in range(128):
             lhs = random.randint(-1024, 1024)
             rhs = random.randint(-1024, 1024)
-            self.assertEqual(lhs - rhs, s.arithmetic('-', lhs, rhs))
+            self.assertEqual(lhs - rhs, arithmetic('-', lhs, rhs))
 
     def test_divide_zero(self):
-        for i in range(1024):
+        for i in range(128):
             lhs = random.randint(-1024, 1024)
-            self.assertRaises(s.DivideZeroError,
-                              s.arithmetic,
+            self.assertRaises(DivideZeroError,
+                              arithmetic,
                               *('/', lhs, 0))
 
     def test_zero_divide(self):
-        for i in range(1024):
+        for i in range(128):
             rhs = random.randint(-1024, 1024)
             rhs = rhs if rhs !=0 else 1
-            self.assertEqual(0, s.arithmetic('/', 0, rhs))
+            self.assertEqual(0, arithmetic('/', 0, rhs))
 
     def test_divide_operation(self):
-        for i in range(1024):
+        for i in range(128):
             lhs = random.randint(-1024, 1024)
             rhs = random.randint(-1024, 1024)
             rhs = rhs if rhs != 0 else 1
-            self.assertEqual(lhs / rhs, s.arithmetic('/', lhs, rhs))
+            self.assertEqual(lhs / rhs, arithmetic('/', lhs, rhs))
 
 
 if __name__ == '__main__':

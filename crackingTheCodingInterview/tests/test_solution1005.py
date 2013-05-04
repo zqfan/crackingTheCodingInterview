@@ -6,7 +6,7 @@ import unittest
 
 from utils import *
 patch_sys_path()
-from cha10.solution1005 import *
+from solution1005 import *
 
 
 class Test(unittest.TestCase):

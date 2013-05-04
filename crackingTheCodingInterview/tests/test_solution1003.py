@@ -2,17 +2,12 @@
 # -*- coding: utf-8 -*-
 # vim: tabstop=4 shiftwidth=4 softtabstop=4
 
-import os
-import sys
 import unittest
 import random
 
-
-TEST_FILE_DIR = os.path.dirname(os.path.abspath(__file__))
-TEST_ROOT_DIR = os.path.dirname(TEST_FILE_DIR)
-SOURCE_ROOT_DIR = os.path.dirname(TEST_ROOT_DIR)
-sys.path.append(SOURCE_ROOT_DIR)
-from cha10.solution1003 import is_intersect
+import utils
+utils.patch_sys_path()
+from solution1003 import is_intersect
 
 
 class CTCI1003Test(unittest.TestCase):
@@ -28,14 +23,14 @@ class CTCI1003Test(unittest.TestCase):
 
     def test_single_vertical_line(self):
         """single vertical line should return true"""
-        for i in range(65535):
+        for i in range(128):
             line1 = (random.randint(1, 65535), 0,
                      random.randint(0, 65535))
             self.assertTrue(is_intersect(line1, line1))
 
     def test_two_different_vertical_lines(self):
         """two different vertical lines should return false"""
-        for i in range(65535):
+        for i in range(128):
             a1, c1, a2, c2 = (random.randint(1, 65535),
                               random.randint(0, 65535),
                               random.randint(1, 65535),
@@ -47,14 +42,14 @@ class CTCI1003Test(unittest.TestCase):
 
     def test_single_horizon_line(self):
         """single horizon line should return true"""
-        for i in range(65535):
+        for i in range(128):
             line1 = (0, random.randint(1, 65535),
                      random.randint(0, 65535))
             self.assertTrue(is_intersect(line1, line1))
 
     def test_two_different_horizon_lines(self):
         """two different horizon lines should return false"""
-        for i in range(65535):
+        for i in range(128):
             b1, c1, b2, c2 = (random.randint(1, 65535),
                               random.randint(0, 65535),
                               random.randint(1, 65535),
@@ -66,7 +61,7 @@ class CTCI1003Test(unittest.TestCase):
 
     def test_single_slash(self):
         """single slash should return true"""
-        for i in range(65535):
+        for i in range(128):
             line1 = (random.randint(1, 65535),
                      random.randint(1, 65535),
                      random.randint(0, 65535))
@@ -74,7 +69,7 @@ class CTCI1003Test(unittest.TestCase):
 
     def test_two_different_intersected_slashes(self):
         """two different intersected slashes should return true"""
-        for i in range(65535):
+        for i in range(128):
             a1, b1, c1 = (random.randint(1, 65535),
                           random.randint(1, 65535),
                           random.randint(0, 65535))
@@ -88,7 +83,7 @@ class CTCI1003Test(unittest.TestCase):
 
     def test_two_different_parallel_slashes(self):
         """two different parallel slashes should return false"""
-        for i in range(65535):
+        for i in range(128):
             a1, b1, c1 = (random.randint(1, 65535),
                           random.randint(1, 65535),
                           random.randint(0, 65535))
