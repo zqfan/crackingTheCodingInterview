@@ -7,7 +7,7 @@ import random
 
 import utils
 utils.patch_sys_path()
-from solution1004 import *
+from cha10.solution1004 import *
 
 
 class CTCI1004Test(unittest.TestCase):

@@ -7,7 +7,7 @@ import random
 
 import utils
 utils.patch_sys_path()
-from solution1003 import is_intersect
+from cha10.solution1003 import is_intersect
 
 
 class CTCI1003Test(unittest.TestCase):
