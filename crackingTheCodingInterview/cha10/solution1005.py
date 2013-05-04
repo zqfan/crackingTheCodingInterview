@@ -8,11 +8,16 @@ Given two squares on a two dimensional plane, find a line that would
 cut these two squares in half.
 """
 
-
 class Point(object):
+    det = 0.000001
+
     def __init__(self, x, y):
         self.x = x
         self.y = y
+
+    def __eq__(self, point):
+        return all((abs(self.x - point.x) < self.det,
+                   abs(self.y - point.y) < self.det))
 
 
 class Square(object):
@@ -37,10 +42,10 @@ def get_line(point1, point2):
     else return (k, b), you must use len(r) to judge the case
     """
     # same point
-    if point1.x == point2.x and point1.y == point2.y:
+    if point1 == point2:
         return
     # vertical line
-    if point1.x == point2.x:
+    if abs(point1.x - point2.x) < Point.det:
         return (point1.x,)
     # normal line
     k = float(point1.y - point2.y) / (point1.x - point2.x)

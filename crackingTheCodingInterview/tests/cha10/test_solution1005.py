@@ -14,7 +14,7 @@ class Test(unittest.TestCase):
         s = Square(Point(-1, 1), Point(1, 1),
                    Point(1, -1), Point(-1, -1))
         r = get_center_line(s, s)
-        self.assertEqual(r, None)
+        self.assertEqual(r, (-1, 0))
 
     def test_vertical_line(self):
         s1 = Square(Point(-1, 0), Point(1, 0),
@@ -24,6 +24,14 @@ class Test(unittest.TestCase):
         r = get_center_line(s1, s2)
         self.assertEqual(len(r), 1)
         self.assertEqual(r[0], 0)
+
+    def test_horizon_line(self):
+        s1 = Square(Point(-1, 1), Point(0, 1),
+                    Point(0, 0), Point(-1, 0))
+        s2 = Square(Point(0, 1), Point(1, 1),
+                    Point(1, 0), Point(0, 0))
+        r = get_center_line(s1, s2)
+        self.assertEqual(r, (0, 0.5))
 
 
 if __name__ == '__main__':
