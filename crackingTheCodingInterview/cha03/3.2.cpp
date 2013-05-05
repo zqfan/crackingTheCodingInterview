@@ -20,53 +20,51 @@
 #include <stack>
 using namespace std;
 
-Template<T>
-class MinStack()
+template<class T>
+class MinStack
 {
+public:
   stack<T> min_stack;
   stack<T> data_stack;
-  MinStack();
-  ~MinStack();
+  MinStack(){};
+  ~MinStack(){};
   void push(T value);
   T pop();
-  T min();
+  const T& min();
+  bool empty();
 };
 
-Template<T>
-MinStack::MinStack()
+template<class T>
+void MinStack<T>::push(T value)
 {
-  this.min_stack = stack<T>();
-  this.data_stack = stack<T>();
+  data_stack.push(value);
+  if (min_stack.empty() || value < min_stack.top())
+    min_stack.push(value);
 }
 
-Template<T>
-void MinStack::push(T value)
+template<class T>
+T MinStack<T>::pop()
 {
-  this.data_stack.push(value);
-  if ( value < this.min_stack.top() )
-    this.min_stack.push(value);
+  if (data_stack.top() == min_stack.top())
+    min_stack.pop();
+  return data_stack.pop();
 }
 
-Template<T>
-T MinStack::pop()
+template<class T>
+const T & MinStack<T>::min()
 {
-  if (this.data_stack.top() == this.min_stack.top())
-    this.min_stack.pop();
-  return this.data_stack.pop();
+  return min_stack.top();
 }
 
-Template<T>
-const T & MinStack::min()
+template<class T>
+bool MinStack<T>::empty()
 {
-  if (this.data_stack.isEmpty())
-    return NULL;
-  else
-    return this.min_stack.top();
+  return data_stack.empty();
 }
 
 int main()
 {
-  MinStack ms = MinStack();
+  MinStack<int> ms;
   ms.push(1);
   ms.push(2);
   cout << ms.min() << endl;
